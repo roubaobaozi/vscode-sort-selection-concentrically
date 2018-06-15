@@ -1,0 +1,7 @@
+margin-left: auto;
+color: blue;
+object-fit: cover;
+a: yes;
+position: absolute;
+will-change: true;
+flex: 1 0 auto;

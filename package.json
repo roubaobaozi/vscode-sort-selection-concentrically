@@ -1,14 +1,59 @@
 {
-  "name": "vscode-sort-selection-concentrically",
+  "name": "sort-selection-concentrically",
+  "displayName": "Sort CSS selection concentrically",
+  "description": "Sorts selection of CSS properties concentrically",
   "version": "0.0.0",
-  "description": "sort selection concentrically",
-  "main": "./out/extension",
-  "repository": "https://github.com/setek/vscode-sort-selection-concentrically.git",
-  "author": "Ming Teo <work@mingteo.com>",
   "license": "MIT",
-  "private": true,
-  "dependencies": {
-    "generator-code": "^1.1.32",
-    "yo": "^2.0.2"
-  }
+  "bugs": {
+    "url": "https://github.com/setek/vscode-sort-selection-concentrically"
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "lint": "tslint ./src/*.ts",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "homepage": "https://github.com/setek/vscode-sort-selection-concentrically",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/setek/vscode-sort-selection-concentrically"
+  },
+  "publisher": "mingteo",
+  "engines": {
+    "vscode": "^1.21.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:sortConcentrically.sortConcentrically"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "sortConcentrically.sortConcentrically",
+        "title": "Sort CSS properties concentrically"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "sortConcentrically.sortConcentrically",
+        "key": "alt+f9",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.32",
+    "@types/node": "^6.0.40",
+    "mocha": "^2.3.3",
+    "tslint": "^5.9.1",
+    "tslint-consistent-codestyle": "^1.13.0",
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0"
+  },
+  "icon": "images/icon.png"
 }
