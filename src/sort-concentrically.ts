@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { sortOrder } from './order-concentric';
+import * as concentricRules from '../node_modules/stylelint-config-foxsports/rules/stylelint-order';
 
 type SortingAlgorithm = (a: string, b: string) => number;
 
@@ -52,6 +52,8 @@ function removeBlanks(lines: string[]): void {
     }
   }
 }
+
+const sortOrder = concentricRules['order/properties-order'];
 
 function concentric(a: string, b: string): number {
   const aProp = a.match(/^([^:]+)/)[0].trim();
