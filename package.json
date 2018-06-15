@@ -55,8 +55,5 @@
     "typescript": "^2.0.3",
     "vscode": "^1.0.0"
   },
-  "icon": "images/icon.png",
-  "dependencies": {
-    "stylelint-config-foxsports": "^1.0.1"
-  }
+  "icon": "images/icon.png"
 }
