@@ -2,7 +2,7 @@
   "name": "sort-selection-concentrically",
   "displayName": "Sort CSS selection concentrically",
   "description": "Sorts selection of CSS properties concentrically",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/setek/vscode-sort-selection-concentrically"
