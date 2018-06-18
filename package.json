@@ -28,14 +28,19 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:sortConcentrically.sortConcentrically"
+    "onCommand:sortConcentrically.sortConcentrically",
+    "onCommand:sortConcentrically.sortUndefTop"
   ],
   "main": "./out/extension",
   "contributes": {
     "commands": [
       {
         "command": "sortConcentrically.sortConcentrically",
-        "title": "Sort CSS properties concentrically"
+        "title": "Sort CSS properties concentrically (undefined to bottom)"
+      },
+      {
+        "command": "sortConcentrically.sortUndefTop",
+        "title": "Sort CSS properties concentrically (undefined to top)"
       }
     ],
     "keybindings": [
