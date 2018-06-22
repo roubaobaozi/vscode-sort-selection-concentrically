@@ -73,4 +73,25 @@ function concentric(a: string, b: string): number {
   return sortOrder.indexOf(aProp) - sortOrder.indexOf(bProp);
 }
 
+function concentricUndefTop(a: string, b: string): number {
+  const aProp = a.match(/^([^:]+)/)[0].trim();
+  const bProp = b.match(/^([^:]+)/)[0].trim();
+
+  // leave to end of array if not in sortOrder list
+  if (sortOrder.indexOf(aProp) === -1 && sortOrder.indexOf(bProp) === -1) {
+    // both are not in sortOrder array, so alphabetise them
+    return aProp > bProp ? 1 : -1;
+  } else if (sortOrder.indexOf(aProp) === -1) {
+    // move up a
+    return -1;
+  } else if (sortOrder.indexOf(bProp) === -1) {
+    // move up b
+    return 1;
+  }
+
+  // both are in sortOrder array, so sort them normally
+  return sortOrder.indexOf(aProp) - sortOrder.indexOf(bProp);
+}
+
 export const sortNormal = () => sortActiveSelection(concentric, false);
+export const sortUndefTop = () => sortActiveSelection(concentricUndefTop, false);
