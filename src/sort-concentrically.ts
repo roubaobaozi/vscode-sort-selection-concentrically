@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { sortOrder } from './order-concentric';
+import { defaultOrder } from './order-concentric';
 
 type SortingAlgorithm = (a: string, b: string) => number;
 
@@ -52,6 +52,24 @@ function removeBlanks(lines: string[]): void {
     }
   }
 }
+
+interface ISettings {
+  customOrder?: string[];
+}
+
+function getSettings(workspace: vscode.Uri): ISettings {
+  const settings = vscode.workspace.getConfiguration(null, workspace).get('sortConcentrically') as ISettings;
+
+  return settings;
+}
+
+const document = vscode.window.activeTextEditor.document;
+const workspaceFolder = vscode.workspace.getWorkspaceFolder(document.uri);
+const workspaceUri = workspaceFolder ? workspaceFolder.uri : null;
+
+const settings = getSettings(workspaceUri);
+
+const sortOrder = settings.customOrder || defaultOrder;
 
 function concentric(a: string, b: string): number {
   const aProp = a.match(/^([^:]+)/)[0].trim();

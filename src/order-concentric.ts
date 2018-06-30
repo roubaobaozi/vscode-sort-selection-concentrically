@@ -1,5 +1,5 @@
 // Concentric CSS order taken from https://github.com/brandon-rhodes/Concentric-CSS
-export const sortOrder = [
+export const defaultOrder = [
   /* browser default styles */
   'all',
   'appearance',
