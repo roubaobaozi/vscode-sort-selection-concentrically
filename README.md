@@ -18,3 +18,18 @@ An unintended side-effect: if you just want to alphabetically sort any text that
 # Usage
 
 Select the lines to sort, press F1, type sort, and select the concentric sort you want. The default hotkey is alt + F9.
+
+# Options
+
+If you have a custom sort order in mind for your CSS, you can add it to your settings:
+
+```
+{
+  [ ... ],
+  "sortConcentrically.customOrder": [
+    "my",
+    "custom",
+    "order"
+  ]
+}
+```
