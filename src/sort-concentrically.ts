@@ -347,7 +347,7 @@ const workspaceUri = workspaceFolder ? workspaceFolder.uri : null;
 
 const settings = getSettings(workspaceUri);
 
-const sortOrder = settings.customOrder || defaultOrder;
+const sortOrder = settings && settings.customOrder || defaultOrder;
 
 function concentric(a: string, b: string): number {
   const aProp = a.match(/^([^:]+)/)[0].trim();
