@@ -3,8 +3,5 @@
     "module": "commonjs",
     "target": "ES5",
     "noLib": true
-  },
-  "exclude": [
-    "node_modules"
-  ]
+  }
 }
