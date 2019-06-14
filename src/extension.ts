@@ -1,11 +1,11 @@
-import * as vscode from 'vscode';
-import * as sortConcentrically from './sort-concentrically';
+import {commands, ExtensionContext} from 'vscode';
+import {sortNormal, sortUndefTop} from './sort-concentrically';
 
-export function activate(context: vscode.ExtensionContext): void {
-  const commands = [
-    vscode.commands.registerCommand('sortConcentrically.sortConcentrically', sortConcentrically.sortNormal),
-    vscode.commands.registerCommand('sortConcentrically.sortUndefTop', sortConcentrically.sortUndefTop),
+export function activate(context: ExtensionContext): void {
+  const sortCommands = [
+    commands.registerCommand('sortConcentrically.sortConcentrically', sortNormal),
+    commands.registerCommand('sortConcentrically.sortUndefTop', sortUndefTop)
   ];
 
-  commands.forEach(command => context.subscriptions.push(command));
+  sortCommands.forEach((sortCommand) => context.subscriptions.push(sortCommand));
 }

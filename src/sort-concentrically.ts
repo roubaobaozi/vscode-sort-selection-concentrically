@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+import {window, TextEditor, workspace, Range, Uri} from 'vscode';
 
 // Concentric CSS order taken from https://github.com/brandon-rhodes/Concentric-CSS
 const defaultOrder = [
@@ -282,7 +282,7 @@ const defaultOrder = [
 type SortingAlgorithm = (a: string, b: string) => number;
 
 function sortActiveSelection(algorithm: SortingAlgorithm, removeDuplicateValues: boolean): Thenable<boolean> | undefined {
-  const textEditor = vscode.window.activeTextEditor;
+  const textEditor = window.activeTextEditor;
   const selection = textEditor.selection;
   if (selection.isSingleLine) {
     return undefined;
@@ -290,14 +290,14 @@ function sortActiveSelection(algorithm: SortingAlgorithm, removeDuplicateValues:
   return sortConcentrically(textEditor, selection.start.line, selection.end.line, algorithm, removeDuplicateValues);
 }
 
-function sortConcentrically(textEditor: vscode.TextEditor, startLine: number, endLine: number, algorithm: SortingAlgorithm, removeDuplicateValues: boolean): Thenable<boolean> {
+function sortConcentrically(textEditor: TextEditor, startLine: number, endLine: number, algorithm: SortingAlgorithm, removeDuplicateValues: boolean): Thenable<boolean> {
   const lines: string[] = [];
   for (let i = startLine; i <= endLine; i++) {
     lines.push(textEditor.document.lineAt(i).text);
   }
 
   // Remove blank lines in selection
-  if (vscode.workspace.getConfiguration('sortConcentrically').get('filterBlankLines') === true) {
+  if (workspace.getConfiguration('sortConcentrically').get('filterBlankLines') === true) {
     removeBlanks(lines);
   }
 
@@ -308,7 +308,7 @@ function sortConcentrically(textEditor: vscode.TextEditor, startLine: number, en
   }
 
   return textEditor.edit(editBuilder => {
-    const range = new vscode.Range(startLine, 0, endLine, textEditor.document.lineAt(endLine).text.length);
+    const range = new Range(startLine, 0, endLine, textEditor.document.lineAt(endLine).text.length);
     editBuilder.replace(range, lines.join('\n'));
   });
 }
@@ -335,14 +335,14 @@ interface ISettings {
   customOrder?: string[];
 }
 
-function getSettings(workspace: vscode.Uri): ISettings {
-  const settings = vscode.workspace.getConfiguration(null, workspace).get('sortConcentrically') as ISettings;
+function getSettings(UriWorkspace: Uri): ISettings {
+  const settings = workspace.getConfiguration(null, UriWorkspace).get('sortConcentrically') as ISettings;
 
   return settings;
 }
 
-const document = vscode.window.activeTextEditor.document;
-const workspaceFolder = vscode.workspace.getWorkspaceFolder(document.uri);
+const document = window.activeTextEditor.document;
+const workspaceFolder = workspace.getWorkspaceFolder(document.uri);
 const workspaceUri = workspaceFolder ? workspaceFolder.uri : null;
 
 const settings = getSettings(workspaceUri);
