@@ -1,5 +1,5 @@
-import {commands, ExtensionContext} from 'vscode';
-import {sortNormal, sortUndefTop} from './sort-concentrically';
+import { commands, ExtensionContext } from 'vscode';
+import { sortNormal, sortUndefTop } from './sort-concentrically';
 
 export function activate(context: ExtensionContext): void {
   const sortCommands = [

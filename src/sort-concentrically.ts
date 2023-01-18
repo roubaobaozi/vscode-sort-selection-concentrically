@@ -1,4 +1,4 @@
-import {window, TextEditor, workspace, Range, Uri} from 'vscode';
+import { window, TextEditor, workspace, Range, Uri } from 'vscode';
 
 // Concentric CSS order taken from https://github.com/brandon-rhodes/Concentric-CSS
 const defaultOrder = [
@@ -335,6 +335,7 @@ interface ISettings {
   customOrder?: string[];
 }
 
+// tslint:disable-next-line
 function getSettings(UriWorkspace: Uri): ISettings {
   const settings = workspace.getConfiguration(null, UriWorkspace).get('sortConcentrically') as ISettings;
 
